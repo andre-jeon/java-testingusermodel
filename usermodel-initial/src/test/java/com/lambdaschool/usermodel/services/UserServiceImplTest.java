@@ -48,6 +48,7 @@ public class UserServiceImplTest {
 
     @Test
     public void findAll() {
+        assertEquals(5, userService.findAll().size());
     }
 
     @Test
