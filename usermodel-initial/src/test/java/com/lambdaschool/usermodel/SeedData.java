@@ -64,9 +64,9 @@ public class SeedData
         r3 = roleService.save(r3);
 
         // admin, data, user
-        User u1 = new User("admin",
+        User u1 = new User("adminTEST",
                            "password",
-                           "admin@lambdaschool.local");
+                           "adminTEST@lambdaschool.local");
         u1.getRoles()
                 .add(new UserRoles(u1, r1));
         u1.getRoles()
@@ -75,53 +75,53 @@ public class SeedData
                 .add(new UserRoles(u1, r3));
         u1.getUseremails()
                 .add(new Useremail(u1,
-                                   "admin@email.local"));
+                                   "adminTEST@email.local"));
         u1.getUseremails()
                 .add(new Useremail(u1,
-                                   "admin@mymail.local"));
+                                   "adminTEST@mymail.local"));
 
         userService.save(u1);
 
         // data, user
-        User u2 = new User("cinnamon",
+        User u2 = new User("cinnamonTEST",
                            "1234567",
-                           "cinnamon@lambdaschool.local");
+                           "cinnamonTEST@lambdaschool.local");
         u2.getRoles()
                 .add(new UserRoles(u2, r2));
         u2.getRoles()
                 .add(new UserRoles(u2, r3));
         u2.getUseremails()
                 .add(new Useremail(u2,
-                                   "cinnamon@mymail.local"));
+                                   "cinnamonTEST@mymail.local"));
         u2.getUseremails()
                 .add(new Useremail(u2,
-                                   "hops@mymail.local"));
+                                   "hopsTEST@mymail.local"));
         u2.getUseremails()
                 .add(new Useremail(u2,
-                                   "bunny@email.local"));
+                                   "bunnyTEST@email.local"));
         userService.save(u2);
 
         // user
-        User u3 = new User("barnbarn",
+        User u3 = new User("barnbarnTEST",
                            "ILuvM4th!",
-                           "barnbarn@lambdaschool.local");
+                           "barnbarnTEST@lambdaschool.local");
         u3.getRoles()
                 .add(new UserRoles(u3, r2));
         u3.getUseremails()
                 .add(new Useremail(u3,
-                                   "barnbarn@email.local"));
+                                   "barnbarnTEST@email.local"));
         userService.save(u3);
 
-        User u4 = new User("puttat",
+        User u4 = new User("puttatTEST",
                            "password",
-                           "puttat@school.lambda");
+                           "puttatTEST@school.lambda");
         u4.getRoles()
                 .add(new UserRoles(u4, r2));
         userService.save(u4);
 
-        User u5 = new User("misskitty",
+        User u5 = new User("misskittyTEST",
                            "password",
-                           "misskitty@school.lambda");
+                           "misskittyTEST@school.lambda");
         u5.getRoles()
                 .add(new UserRoles(u5, r2));
         userService.save(u5);

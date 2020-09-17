@@ -53,7 +53,7 @@ public class UserServiceImplTest {
 
     @Test
     public void a_findUserById() {
-        assertEquals("barnbarn", userService.findUserById(11).getUsername());
+        assertEquals("barnbarntest", userService.findUserById(11).getUsername());
     }
 
     @Test(expected = ResourceNotFoundException.class)
@@ -77,13 +77,24 @@ public class UserServiceImplTest {
         assertEquals(4, userService.findAll().size());
     }
 
-    @Test
-    public void f_findByName() {
-        assertEquals("barnbarn", userService.findByName("barnbarn").getUsername());
+    @Test(expected = ResourceNotFoundException.class)
+    public void ee_deleteUserNotFound() {
+        userService.delete(9000);
+        assertEquals(5, userService.findAll().size());
     }
 
     @Test
-    public void g_save() {
+    public void f_findByName() {
+        assertEquals("barnbarntest", userService.findByName("barnbarntest").getUsername());
+    }
+
+    @Test(expected = ResourceNotFoundException.class)
+    public void g_findByNameNotFound() {
+        assertEquals("", userService.findByName("barn").getUsername());
+    }
+
+    @Test
+    public void h_save() {
         // create an user to save
         String u4Name = "barnbarn2.0";
         User u4 = new User("barnbarn2.0",
@@ -99,15 +110,40 @@ public class UserServiceImplTest {
     }
 
     @Test
-    public void gg_saveput() {
-
+    public void hh_saveput() {
+        String u4Name = "barnbarn2.0";
+        User u4 = new User("barnbarn2.0",
+                "password",
+                "barnbarnTEST@school.lambda");
+        Role role = new Role("turtle");
+        role.setRoleid(3);
+        u4.getRoles()
+                .add(new UserRoles(u4, role));
+        User addUser = userService.save(u4);
+        assertNotNull(addUser);
+        assertEquals(u4Name, addUser.getUsername());
     }
 
     @Test
-    public void h_update() {
+    public void i_update() {
+        String updateName = "bugstest";
+        User updateUser = new User();
+        updateUser.setUsername("bugstest");
+        updateUser.setUserid(13);
+        updateUser.setPrimaryemail("bugstest@lambda.com");
+        updateUser.setPassword("pwd1234$7&");
+        updateUser.getUseremails().add(new Useremail(updateUser, "mrbunnytest@aol.com"));
+
+        Role role = new Role("sandwich");
+        role.setRoleid(2);
+        updateUser.getRoles().add(new UserRoles(updateUser, role));
+
+        User userDetails = userService.update(updateUser, 13);
+        assertNotNull(userDetails);
+        assertEquals(updateName, userService.findUserById(13).getUsername());
     }
 
     @Test
-    public void deleteAll() {
+    public void j_deleteAll() {
     }
 }
