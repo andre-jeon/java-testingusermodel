@@ -1,5 +1,6 @@
 package com.lambdaschool.usermodel.services;
 
+import com.lambdaschool.usermodel.exceptions.ResourceFoundException;
 import com.lambdaschool.usermodel.models.User;
 
 import java.util.List;
@@ -34,7 +35,8 @@ public interface UserService
      * @param id The primary key (long) of the user you seek.
      * @return The given User or throws an exception if not found.
      */
-    User findUserById(long id);
+    User findUserById(long id) throws ResourceFoundException;
+
 
     /**
      * Returns the user with the given name
