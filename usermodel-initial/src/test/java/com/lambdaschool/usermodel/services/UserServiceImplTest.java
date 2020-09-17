@@ -1,6 +1,7 @@
 package com.lambdaschool.usermodel.services;
 
 import com.lambdaschool.usermodel.UserModelApplication;
+import com.lambdaschool.usermodel.models.User;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -11,6 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.nio.channels.spi.SelectorProvider;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -31,6 +33,11 @@ public class UserServiceImplTest {
         // stubs -> fake methods
         // Java -> mocks
         MockitoAnnotations.initMocks(this);
+
+        List<User> myList = userService.findAll();
+        for (User u : myList) {
+            System.out.println(u.getUserid() + " " + u.getUsername());
+        }
     }
 
     @After
@@ -39,11 +46,12 @@ public class UserServiceImplTest {
 
     @Test
     public void findUserById() {
+        assertEquals("admin", userService.findUserById(4).getUsername());
     }
 
     @Test
     public void findByNameContaining() {
-        assertEquals(1, userService.findByNameContaining("barnbarn").size());
+        assertEquals(2, userService.findByNameContaining("tt").size());
     }
 
     @Test
